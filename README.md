@@ -1,56 +1,128 @@
-# 📦 FastAPI Backend - Graph8 Migration Challenge
+# ⚙️ Graph8 Migration Challenge
 
-This project is a FastAPI-based backend converted from a Ruby on Rails application.
+A full-stack project powered by **FastAPI** (backend) and **React** (frontend), migrated from a Ruby on Rails architecture.
 
-## 🚀 Quick Start
+---
+
+## 🌐 Live Links
+
+| Service     | URL                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| 🖥️ Frontend | [https://your-frontend.vercel.app](https://your-frontend.vercel.app)                               |
+| 🛠️ Backend  | [https://graph8-migration-challenge.onrender.com](https://graph8-migration-challenge.onrender.com) |
+
+---
+
+## 🧩 Tech Stack
+
+- 🐍 Backend: FastAPI + SQLAlchemy + Alembic
+- ⚛️ Frontend: React + Vite
+- 🐘 Database: PostgreSQL (Locally or on Render)
+
+---
+
+## 🖥️ Frontend Setup
 
 ### Prerequisites
+
+- Node.js (v18+ recommended)
+- Yarn or npm
+
+### Run Frontend Locally
+
+```bash
+cd frontend
+npm install  # or yarn install
+npm run dev  # or yarn dev
+```
+
+Access the app at http://localhost:5173
+
+### API Connection
+
+Make sure your frontend `.env` has:
+
+```
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+Or set it to your production URL for deployed frontend:
+
+```
+VITE_API_BASE_URL=https://graph8-migration-challenge.onrender.com
+```
+
+---
+
+## ⚙️ Backend Setup
+
+### Prerequisites
+
 - Python 3.10.16
 - PostgreSQL
 - Git
 
-### Installation Steps
+### Run Backend Locally
 
-1. **Set Up Virtual Environment**
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-2. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Configure Environment**
-   Create a `.env` file in the `backend/` directory:
-   ```
-   DATABASE_URL=postgresql://dev@localhost:5432/test_db_1
-   ```
-   Make sure your Postgres user `dev` exists and the database `test_db_1` is created.
-
-## 🗃️ Database Setup
-
-### PostgreSQL Setup
 ```bash
-# Create database (if not created already)
-createdb test_db_1
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### Run Migrations
-```bash
-# Create Alembic migration
-alembic revision --autogenerate -m "initial migration"
+Create `.env` inside `backend/`:
 
-# Apply migration
+```
+DATABASE_URL=postgresql://<user>:<password>@localhost:5432/<db_name>
+```
+
+Make sure your local Postgres DB and user exist:
+
+```bash
+createdb <db_name>
+```
+
+### Apply Migrations
+
+```bash
+alembic revision --autogenerate -m "initial migration"
 alembic upgrade head
 ```
 
-## 🚀 Running the Application
+### Run Dev Server
 
-### Development Server
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Visit your API docs at: http://127.0.0.1:8000/docs
+- API: http://localhost:8000
+- Docs: http://localhost:8000/docs
+
+---
+
+## 🧑‍💻 Deployment Setup
+
+### Backend (Render)
+
+- Add the following to Start Command:
+  ```
+  uvicorn app.main:app --host 0.0.0.0 --port $PORT
+  ```
+- Working Directory: `backend`
+- Build Command:
+  ```
+  cd backend && pip install -r requirements.txt
+  ```
+- Add environment variable:
+  ```
+  DATABASE_URL=postgresql://<user>:<password>@<host>:<port>/<dbname>
+  ```
+
+### Frontend (Vercel)
+
+- Set environment variable in Vercel project:
+  ```
+  VITE_API_BASE_URL=https://graph8-migration-challenge.onrender.com
+  ```
+- Deploy via Vercel Git integration or CLI
