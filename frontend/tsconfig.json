@@ -1,3 +1,4 @@
+// tsconfig.json (Corrected)
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -18,9 +19,12 @@
         "name": "next"
       }
     ],
+    // --- Add baseUrl and Fix paths ---
+    "baseUrl": ".", // Set the base directory for path resolution
     "paths": {
-      "./*": ["./src/*"]
+      "@/*": ["./src/*"] // Map '@/' to the 'src' directory
     }
+    // --- End of changes ---
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
