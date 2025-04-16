@@ -1,6 +1,6 @@
 # ⚙️ Graph8 Migration Challenge
 
-A full-stack project powered by **FastAPI** (backend) and **React** (frontend), migrated from a Ruby on Rails architecture.
+A full-stack project powered by **FastAPI** (backend) and **Next.js** (frontend), migrated from a Ruby on Rails architecture.
 
 ---
 
@@ -16,7 +16,7 @@ A full-stack project powered by **FastAPI** (backend) and **React** (frontend), 
 ## 🧩 Tech Stack
 
 - 🐍 Backend: FastAPI + SQLAlchemy + Alembic
-- ⚛️ Frontend: React + Vite
+- ⚛️ Frontend: Next.js
 - 🐘 Database: PostgreSQL (Locally or on Render)
 
 ---
@@ -36,20 +36,20 @@ npm install  # or yarn install
 npm run dev  # or yarn dev
 ```
 
-Access the app at http://localhost:5173
+Access the app at http://localhost:3000
 
 ### API Connection
 
-Make sure your frontend `.env` has:
+Make sure your frontend `.env.local` has:
 
 ```
-VITE_API_BASE_URL=http://localhost:8000
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 ```
 
 Or set it to your production URL for deployed frontend:
 
 ```
-VITE_API_BASE_URL=https://graph8-migration-challenge.onrender.com
+NEXT_PUBLIC_API_BASE_URL=https://graph8-migration-challenge.onrender.com
 ```
 
 ---
@@ -123,6 +123,6 @@ uvicorn app.main:app --reload
 
 - Set environment variable in Vercel project:
   ```
-  VITE_API_BASE_URL=https://graph8-migration-challenge.onrender.com
+  NEXT_PUBLIC_API_BASE_URL=https://graph8-migration-challenge.onrender.com
   ```
 - Deploy via Vercel Git integration or CLI
